@@ -1,0 +1,17 @@
+* Things-To-Keep-In-Mind *
+
+Things to keep in mind while working on this group project:
+1. Approach this project as if you want to eventually sell it to clients. 
+2. The project should contain a unique feature (Selling point)
+3. You will need to come up with a name for your team (we will use it to create your private Slack channel and Github team)
+4. You project proposals should be done by Friday, once submitted you guys need to agree on working on one of your proposals and submit that to Adib
+5. Don't start coding until your project proposal is approved.
+6. You will need to meet on a daily basis for a quick stand-up meeting. The goal of this meeting is to provide updates for your team on your progress in the tasks you're working on. 
+7. You will be meeting with Darrin on a weekly basis. This meeting is to make sure you're on track and to answer some of the questions you might have. Darrin will not be working with you as your mentor, his job is to make sure you're on track. 
+8. You will need to send a daily summary on Slack (Private group) with some details on what you're working on. 
+
+## Demo Day: 
+1. During your demo/presentation, be prepared to handle technical questions
+2. It will be similar to a Job Interview / Pitch your project. Convince us why we should use it and why it's special.
+3. Please keep your demo focused on code and the project, no personal or spiritual talk. 
+4. Dress up! And find a quiet place to present the project. 

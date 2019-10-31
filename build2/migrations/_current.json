@@ -18,16 +18,6 @@
                     "allowNull": false,
                     "field": "description",
                     "seqType": "Sequelize.STRING(45)"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
                 }
             },
             "indexes": []
@@ -37,32 +27,42 @@
             "schema": {
                 "userid": {
                     "allowNull": false,
+                    "autoIncrement": true,
                     "primaryKey": true,
                     "field": "userid",
                     "seqType": "Sequelize.INTEGER(11)"
                 },
                 "firstname": {
-                    "allowNull": false,
                     "field": "firstname",
-                    "seqType": "Sequelize.STRING(45)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "lastname": {
-                    "allowNull": false,
                     "field": "lastname",
-                    "seqType": "Sequelize.STRING(45)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "fullname": {
-                    "allowNull": false,
                     "field": "fullname",
-                    "seqType": "Sequelize.STRING(45)"
+                    "seqType": "Sequelize.STRING"
+                },
+                "username": {
+                    "unique": true,
+                    "field": "username",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
-                    "allowNull": false,
                     "field": "createdAt",
                     "seqType": "Sequelize.DATE"
                 },
                 "updatedAt": {
-                    "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 }
@@ -70,5 +70,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 8
 }

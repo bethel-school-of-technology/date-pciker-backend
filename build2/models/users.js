@@ -5,20 +5,31 @@ module.exports = function(sequelize, DataTypes) {
     userid: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true
     },
     firstname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
+      type: DataTypes.STRING,
     },
     lastname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
+      type: DataTypes.STRING,
     },
     fullname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    }
+      type: DataTypes.STRING,
+    },
+    username: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     tableName: 'users'
   });

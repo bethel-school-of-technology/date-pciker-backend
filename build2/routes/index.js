@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql2');
-const models = require('../models');
+var models = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -47,4 +47,26 @@ router.get('/specificIdea', function(req, res, next) {
 
 
 //here's a change to commit//
+
+router.get('/ideas', function(req, res, next) {
+    models.ideas
+        .findAll({ include: [{ model: models.profiles }] })
+        .then(ideasFound => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(ideasFound));
+        });
+});
+
+router.post('/ideas', function(req, res, next) {
+    models.ideas.create(req.body)
+        .then(newIdea => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(newIdea));
+        })
+        .catch(err => {
+            res.status(400);
+            res.send(err.message);
+        });
+});
+
 module.exports = router;

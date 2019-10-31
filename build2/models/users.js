@@ -1,25 +1,24 @@
-/* jshint indent: 2 */
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+    const users = sequelize.define('users', {
+        UserId: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+        },
+        FirstName: DataTypes.STRING,
+        LastName: DataTypes.STRING,
+        Email: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        Username: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        Password: DataTypes.STRING
+    }, {});
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
-    userid: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true
-    },
-    firstname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    lastname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    fullname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    }
-  }, {
-    tableName: 'users'
-  });
+    return users;
 };

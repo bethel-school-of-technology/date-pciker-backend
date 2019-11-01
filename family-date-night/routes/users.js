@@ -35,6 +35,10 @@ router.post('/signup', function(req, res, next) {
     });
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
 router.get('/profile/:id', function (req, res, next) {
   models.users
     .findByPk(parseInt(req.params.id))
@@ -68,5 +72,33 @@ router.post('/login', function(req, res, next) {
       }
     });
 });
+
+// router.post('/login', function (req, res, next) {
+//   models.users.findOne({
+//     where: {
+//       Username: req.body.username
+//     }
+//   }).then(user => {
+//     if (!user) {
+//       console.log('User not found')
+//       return res.status(401).json({
+//         message: "Login Failed"
+//       });
+//     } else {
+//       let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
+//       if (passwordMatch) {
+//         const userId = user.UserId;
+//         let token = authService.signUser(user);
+//         res.cookie('jwt', token);
+//         // res.send('Login successful');
+//         res.redirect('profile/' + userId)
+//       } else {
+//         console.log('Wrong password');
+//         res.send('Wrong password');
+//       }
+//     }
+//   });
+// });
+
 
 module.exports = router;

@@ -1,10 +1,8 @@
-{{!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
-</html> --}}
+<h1>displays all ideas</h1> 
+
+{{#each ideas}}
+<h4>Topic:</h4>
+{{topic}}
+<h4>Description:</h4>
+{{description}}
+{{/each}}

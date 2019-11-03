@@ -15,3 +15,6 @@ Things to keep in mind while working on this group project:
 2. It will be similar to a Job Interview / Pitch your project. Convince us why we should use it and why it's special.
 3. Please keep your demo focused on code and the project, no personal or spiritual talk. 
 4. Dress up! And find a quiet place to present the project. 
+
+
+bla-bla

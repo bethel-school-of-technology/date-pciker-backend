@@ -56,6 +56,10 @@ router.get('/profile/:id', function(req, res, next) {
         });
 });
 
+router.get('/login', function(req, res, next) {
+    res.render('login');
+});
+
 router.post('/login', function(req, res, next) {
     models.users
         .findOne({

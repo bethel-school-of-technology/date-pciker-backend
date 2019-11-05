@@ -3,8 +3,16 @@ var router = express.Router();
 var models = require('../models');
 
 /* GET users listing. */
-router.get('/profile', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/profile/:username', function(req, res, next) {
+  models.users
+  .findByPk(req.params.username)
+  .then(
+    user => {
+      if (user) {
+        res.send(JSON.stringify(user.data))
+      }
+    }
+  )
 });
 
 router.get('/login', function(req, res, next) {
@@ -34,5 +42,26 @@ router.post('/signup', function(req, res, next) {
     }
   }) 
 })
+
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
+router.post('/login', function(req, res, next) {
+  models.users
+    .findOne({
+      where: {
+        Username: req.body.username,
+        Password: req.body.password
+      }
+    })
+    .then(user => {
+      if (user) {
+        res.send('Login succeeded!');
+      } else {
+        res.send('Invalid login!');
+      }
+    });
+});
 
 module.exports = router;

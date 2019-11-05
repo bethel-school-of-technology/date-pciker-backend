@@ -15,13 +15,13 @@ router.get('/', function(req, res, next) {
 //     });
 // });
 
-router.get('ideas'),
-    function(req, res, next) {
-        models.ideas
-        findAll()
-            .then(ideasFound => {
-                res.setHeader('Content-Type', 'application/json');
-            });
-    };
+// router.get('ideas'),
+//     function(req, res, next) {
+//         models.ideas
+//         findAll()
+//             .then(ideasFound => {
+//                 res.setHeader('Content-Type', 'application/json');
+//             });
+//     };
 
 module.exports = router;

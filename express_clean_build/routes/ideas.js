@@ -15,20 +15,19 @@ router.post('/ideas', function(req, res, next) {
     models.ideas
         .findOrCreate({
             where: {
-                Username: req.body.username
+                UserId: req.body.userId
             },
             defaults: {
-                FirstName: req.body.firstName,
-                LastName: req.body.lastName,
-                Email: req.body.email,
-                Password: req.body.password
+                Topic: req.body.topic,
+                Description: req.body.description,
+                IdeasId: req.body.ideasId,
             }
         })
         .spread(function(result, created) {
             if (created) {
-                res.send('User successfully created');
+                res.send('Idea posted successfully');
             } else {
-                res.send('This user already exists');
+                res.send('This post already exists');
             }
         });
   });

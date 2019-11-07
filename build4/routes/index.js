@@ -62,8 +62,8 @@ router.post("/login", function(req, res, next) {
       }
       if (user) {
         let token = authService.signUser(user); // <--- Uses the authService to create jwt token
-        res.cookie("jwt", token); // <--- Adds token to response as a cookie
-        res.send("Login successful");
+        res.cookie("jwt", token, { httpOnly: true }) // <--- Adds token to response as a cookie
+        .sendStatus(200)
       } else {
         console.log("Wrong password");
         res.redirect("login");

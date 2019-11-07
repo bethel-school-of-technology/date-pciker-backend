@@ -14,9 +14,9 @@ router.get('/ideas', function(req, res, next) {
 router.post('/ideas', function(req, res, next) {
     models.ideas
         .findOrCreate({
-            where: {
-                UserId: req.body.userId
-            },
+            // where: {
+            //     UserId: req.body.userId
+            // },
             defaults: {
                 Topic: req.body.topic,
                 Description: req.body.description,

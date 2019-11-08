@@ -60,4 +60,25 @@ router.post('/ideas', function(req, res, next) {
 //         });
 //   });
 
+// router.post('/comments', function(req, res, next) {
+//     models.comments
+//         .findOrCreate({
+//             // where: {
+//             //     UserId: req.body.userId
+//             // },
+//             defaults: {
+//                 Topic: req.body.topic,
+//                 Description: req.body.description,
+//                 IdeasId: req.body.ideasId,
+//             }
+//         })
+//         .spread(function(result, created) {
+//             if (created) {
+//                 res.send('Idea posted successfully');
+//             } else {
+//                 res.send('This post already exists');
+//             }
+//         });
+//   });
+
 module.exports = router;

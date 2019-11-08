@@ -33,11 +33,6 @@ router.post('/signup', function(req, res, next) {
       });
 });
 
-// router.get('/login', function(req, res, next) {
-//     res.render('login');
-// });
-
-
 router.get('/login', function(req, res, next) {
   res.render('login');
 });

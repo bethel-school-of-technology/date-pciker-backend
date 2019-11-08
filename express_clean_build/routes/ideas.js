@@ -32,5 +32,32 @@ router.post('/ideas', function(req, res, next) {
         });
   });
 
+//============//Comments routes//============//
+  //==possibly use findByPk??==//
+// router.get('/comments', function(req, res, next) {
+//     models.comments
+//       .findAll({include: [{ model: models.comments }]})
+//       .then(ideasFound => {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.send(JSON.stringify(ideasFound));
+//       });
+//   });
+
+//   router.get('/profile/:username', function(req, res, next) {
+//     models.users
+//         .findByPk(req.params.Username)
+//         .then(user => {
+//             if (user) {
+//                 res.render('profile', {
+//                     FirstName: user.FirstName,
+//                     LastName: user.LastName,
+//                     Email: user.Email,
+//                     Username: user.Username
+//                 });
+//             } else {
+//                 res.send('User not found');
+//             }
+//         });
+//   });
 
 module.exports = router;

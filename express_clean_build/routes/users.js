@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-var authService = require('../services/auth'); //<--- Add authentication service
+// var authService = require('../services/auth'); //<--- Add authentication service
 const mysql = require('mysql2')
 
 /* GET users listing. */
@@ -15,66 +15,50 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-  models.users
+    models.users
       .findOrCreate({
-          where: {
-              Username: req.body.username
-          },
-          defaults: {
-              FirstName: req.body.firstName,
-              LastName: req.body.lastName,
-              Email: req.body.email,
-              Password: req.body.password
-          }
+        where: {
+          Username: req.body.username
+        },
+        defaults: {
+          FirstName: req.body.firstName,
+          LastName: req.body.lastName,
+          Email: req.body.email,
+          Password: req.body.password
+        }
       })
       .spread(function(result, created) {
-          if (created) {
-              res.send('User successfully created');
-          } else {
-              res.send('This user already exists');
-          }
+        if (created) {
+          res.redirect('login');  //<---Change this line to redirect to the login screen
+        } else {
+          res.send('This user already exists');
+        }
       });
-});
+  });
 
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
 router.post('/login', function(req, res, next) {
-  models.users
+    models.users
       .findOne({
-          where: {
-              Username: req.body.username,
-              Password: req.body.password
-          }
+        where: {
+          Username: req.body.username,
+          Password: req.body.password
+        }
       })
       .then(user => {
-          if (user) {
-              res.send('Login succeeded!');
-          } else {
-              res.send('Invalid login!');
-          }
+        if (user) {
+          res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
+        } else {
+          res.send('Invalid login!');
+        }
       });
-});
+  });
+  
 
-// SECURE POST LOGIN ROUTE PRIOR TO PASSPORT
 
-// router.post('/login', function(req, res, next) {
-//   models.users
-//     .findOne({
-//       where: {
-//         Username: req.body.username,
-//         Password: req.body.password
-//       }
-//     })
-//     .then(user => {
-//       if (user) {
-//         res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
-//       } else {
-//         res.send('Invalid login!');
-//       }
-//     });
-// });
 
 // SECURE POST LOGIN ROUTE WITH PASSPORT
 
@@ -90,7 +74,7 @@ router.post('/login', function(req, res, next) {
 // router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login' }),
 //   function (req, res, next) { res.redirect('profile') });  //<--- Called Without UserID
 
-router.get('/profile/:username', function(req, res, next) {
+router.get('/profile/:id', function(req, res, next) {
   models.users
       .findByPk(req.params.Username)
       .then(user => {
@@ -130,35 +114,35 @@ router.get('/profile/:username', function(req, res, next) {
 //   }
 // });
 
-router.get('/ideas', function(req, res, next) {
-  res.render('ideas');
-});
+// router.get('/ideas', function(req, res, next) {
+//   res.render('ideas');
+// });
 
-router.post('/ideas', function(req, res, next) {
-  models.ideas
-      .findOrCreate({
-          where: {
-              Username: req.body.username
-          },
-          defaults: {
-              FirstName: req.body.firstName,
-              LastName: req.body.lastName,
-              Email: req.body.email,
-              Password: req.body.password
-          }
-      })
-      .spread(function(result, created) {
-          if (created) {
-              res.send('User successfully created');
-          } else {
-              res.send('This user already exists');
-          }
-      });
-});
+// router.post('/ideas', function(req, res, next) {
+//   models.ideas
+//       .findOrCreate({
+//           where: {
+//               Username: req.body.username
+//           },
+//           defaults: {
+//               FirstName: req.body.firstName,
+//               LastName: req.body.lastName,
+//               Email: req.body.email,
+//               Password: req.body.password
+//           }
+//       })
+//       .spread(function(result, created) {
+//           if (created) {
+//               res.send('Idea successfully created');
+//           } else {
+//               res.send('This idea already exists');
+//           }
+//       });
+// });
 
-router.get('/logout', function (req, res, next) {
-    res.cookie('jwt', "", { expires: new Date(0) });
-    res.send('Logged out');
-    });
+// router.get('/logout', function (req, res, next) {
+//     res.cookie('jwt', "", { expires: new Date(0) });
+//     res.send('Logged out');
+//     });
 
 module.exports = router;

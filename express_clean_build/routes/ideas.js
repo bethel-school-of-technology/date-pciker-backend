@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 
 router.get('/ideas', function(req, res, next) {
@@ -33,7 +34,9 @@ router.post('/ideas', function(req, res, next) {
   });
 
 //============//Comments routes//============//
+
   //==possibly use findByPk??==//
+
 // router.get('/comments', function(req, res, next) {
 //     models.comments
 //       .findAll({include: [{ model: models.comments }]})

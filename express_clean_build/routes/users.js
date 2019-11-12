@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
+var authService = require('../services/auth'); //<--- Add authentication service
+const mysql = require('mysql2')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -152,5 +155,10 @@ router.post('/ideas', function(req, res, next) {
           }
       });
 });
+
+router.get('/logout', function (req, res, next) {
+    res.cookie('jwt', "", { expires: new Date(0) });
+    res.send('Logged out');
+    });
 
 module.exports = router;

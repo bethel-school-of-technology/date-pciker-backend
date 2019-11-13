@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-var passport = require('../services/passport');
+// var passport = require('../services/passport');
 
 // /* GET ideas listing. */
 // router.get('/', function(req, res, next) {
@@ -18,7 +18,31 @@ router.get('/', function(req, res, next) {
 });
 
 
-//NEEDED: GET and POST ROUTESs
+//NEEDED: POST ROUTESs
+//Ideas Post
+router.post('/ideas', function(req, res, next) {
+    models.users.findOne({
+        where: {
+            Username: req.body.username,
+            Password: req.body.password
+        }
+    }).then(user => {
+        if (!user) {
+            console.log('User not found')
+            return res.status(401).json({
+                message: "Login Failed"
+            });
+        }
+        if (user) {
+            let token = authService.signUser(user); // <--- Uses the authService to create jwt token
+            res.cookie('jwt', token); // <--- Adds token to response as a cookie
+            res.send('Login successful');
+        } else {
+            console.log('Wrong password');
+            res.redirect('login')
+        }
+    });
+});
 
 
 module.exports = router;

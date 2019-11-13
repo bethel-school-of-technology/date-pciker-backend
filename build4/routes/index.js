@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-
+var authService = require('../services/auth');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
 //CHECKS WEB TOKEN
-router.get('/checkToken', authService, function(req, res) {
-    res.sendStatus(200);
-});
+// router.get('/checkToken', authService, function(req, res) {
+//     res.sendStatus(200);
+// });
 
 // router.get('/actors', function(req, res, next) {
 //   models.actor

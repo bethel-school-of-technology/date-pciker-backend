@@ -4,6 +4,9 @@ var models = require('../models');
 // var authService = require('../services/auth'); //<--- Add authentication service
 
     
+  router.get('/signup', function(req, res, next) {
+      res.render('signup')});
+
   router.post('/signup', function(req, res, next) {
     models.users
       .findOrCreate({
@@ -25,23 +28,28 @@ var models = require('../models');
         }
       });
   });
-    
-  router.get('/profile/:id', function (req, res, next) {
-    models.users
-      .findByPk(parseInt(req.params.id))
-      .then(user => {
-        if (user) {
-          res.render('profile', { //find stringify
-            FirstName: user.FirstName,
-            LastName: user.LastName,
-            Email: user.Email,
-            Username: user.Username
-          });
-        } else {
-          res.send('User not found');
-        }
-      });
-  });
+   
+  
+
+//   router.get('/profile/:id', function (req, res, next) {
+//     models.users
+//       .findByPk(parseInt(req.params.id))
+//       .then(user => {
+//         if (user) {
+//           res.render('profile', { //find stringify
+//             FirstName: user.FirstName,
+//             LastName: user.LastName,
+//             Email: user.Email,
+//             Username: user.Username
+//           });
+//         } else {
+//           res.send('User not found');
+//         }
+//       });
+//   });
+
+router.get('/login', function(req, res, next) {
+    res.render('login')});
   
   router.post('/login', function(req, res, next) {
     models.users
@@ -60,8 +68,46 @@ var models = require('../models');
       });
   });
   
+  router.get('/users/:id', function(req, res, next) {
+    models.users
+      .findByPk(parseInt(req.params.id), { 
+        include: [{ model: models.users }]
+      })
+      .then(usersFound => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(usersFound));
+      })
+  });
+
+  router.get('/profile/:id', function (req, res, next) {
+    models.users
+      .findByPk(parseInt(req.params.id))
+      .then(user => {
+        if (user) {
+          res.render('profile', {
+            FirstName: user.FirstName,
+            LastName: user.LastName,
+            Email: user.Email,
+            Username: user.Username
+          });
+        } else {
+          res.send('User not found');
+        }
+      });
+    });
+
   module.exports = router;
 
+  // find all method with stringify//
+
+//   router.get('/actors', function(req, res, next) {
+//     models.actor
+//       .findAll({include: [{ model: models.film }]})
+//       .then(actorsFound => {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.send(JSON.stringify(actorsFound));
+//       });
+//   });
 
 /* GET users listing. */
 // router.get('/', function(req, res, next) {

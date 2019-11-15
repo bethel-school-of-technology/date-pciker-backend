@@ -11,13 +11,13 @@ var models = require('../models');
     models.users
       .findOrCreate({
         where: {
-          Username: req.body.username
+          Username: req.body.Username
         },
         defaults: {
-          FirstName: req.body.firstName,
-          LastName: req.body.lastName,
-          Email: req.body.email,
-          Password: req.body.password
+          FirstName: req.body.FirstName,
+          LastName: req.body.LastName,
+          Email: req.body.Email,
+          Password: req.body.Password
         }
       })
       .spread(function(result, created) {
@@ -68,7 +68,7 @@ router.get('/login', function(req, res, next) {
       });
   });
   
-  router.get('/users/:id', function(req, res, next) {
+  router.get('/profile/:id', function(req, res, next) {
     models.users
       .findByPk(parseInt(req.params.id), { 
         include: [{ model: models.users }]

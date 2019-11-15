@@ -3,11 +3,47 @@
         "ideas": {
             "tableName": "ideas",
             "schema": {
+                "UserId": {
+                    "allowNull": false,
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "Topic": {
+                    "allowNull": true,
+                    "field": "Topic",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "Description": {
+                    "allowNull": true,
+                    "field": "Description",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "createdAt": {
+                    "allowNull": true,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": true,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
                 "IdeasId": {
                     "allowNull": false,
-                    "autoIncrement": true,
                     "primaryKey": true,
                     "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER(11)"
+                }
+            },
+            "indexes": []
+        },
+        "ideas_users": {
+            "tableName": "ideas_users",
+            "schema": {
+                "IdeaId": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "field": "IdeaId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "UserId": {
@@ -15,21 +51,16 @@
                     "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "Topic": {
-                    "field": "Topic",
-                    "seqType": "Sequelize.STRING"
-                },
-                "Description": {
-                    "field": "Description",
-                    "seqType": "Sequelize.STRING"
-                },
-                "createdAt": {
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
+                "user_id": {
+                    "unique": "ideas_users_user_id_user_id_unique",
+                    "references": {
+                        "model": "ideas",
+                        "key": "IdeasId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "user_id",
+                    "seqType": "Sequelize.INTEGER(11)"
                 }
             },
             "indexes": []
@@ -38,37 +69,32 @@
             "tableName": "users",
             "schema": {
                 "UserId": {
-                    "allowNull": false,
                     "autoIncrement": true,
                     "primaryKey": true,
                     "field": "UserId",
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.INTEGER(11)"
                 },
                 "FirstName": {
                     "field": "FirstName",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(255)"
                 },
                 "LastName": {
                     "field": "LastName",
-                    "seqType": "Sequelize.STRING"
-                },
-                "FullName": {
-                    "field": "FullName",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(255)"
                 },
                 "Email": {
                     "unique": true,
                     "field": "Email",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(255)"
                 },
                 "Username": {
                     "unique": true,
                     "field": "Username",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(255)"
                 },
                 "Password": {
                     "field": "Password",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(255)"
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -82,5 +108,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 5
 }

@@ -79,22 +79,22 @@ router.get('/login', function(req, res, next) {
       })
   });
 
-  router.get('/profile/:id', function (req, res, next) {
-    models.users
-      .findByPk(parseInt(req.params.id))
-      .then(user => {
-        if (user) {
-          res.render('profile', {
-            FirstName: user.FirstName,
-            LastName: user.LastName,
-            Email: user.Email,
-            Username: user.Username
-          });
-        } else {
-          res.send('User not found');
-        }
-      });
-    });
+  // router.get('/profile/:id', function (req, res, next) {
+  //   models.users
+  //     .findByPk(parseInt(req.params.id))
+  //     .then(user => {
+  //       if (user) {
+  //         res.render('profile', {
+  //           FirstName: user.FirstName,
+  //           LastName: user.LastName,
+  //           Email: user.Email,
+  //           Username: user.Username
+  //         });
+  //       } else {
+  //         res.send('User not found');
+  //       }
+  //     });
+  //   });
 
   module.exports = router;
 

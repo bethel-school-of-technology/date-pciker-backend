@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "express-clean-build",
   "version": "0.0.0",
@@ -23,3 +24,30 @@
     "nodemon": "^1.19.4"
   }
 }
+=======
+{
+  "name": "express-clean-build",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1",
+    "mysql2": "^2.0.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.43.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699

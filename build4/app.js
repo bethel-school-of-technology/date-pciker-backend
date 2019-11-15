@@ -61,4 +61,5 @@ models.sequelize.sync().then(function() {
     console.log("DB Sync'd up")
 });
 
+
 module.exports = app;

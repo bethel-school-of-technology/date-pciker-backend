@@ -3,6 +3,7 @@
         "ideas": {
             "tableName": "ideas",
             "schema": {
+<<<<<<< HEAD
                 "IdeasId": {
                     "allowNull": false,
                     "autoIncrement": true,
@@ -24,12 +25,43 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
+=======
+                "UserId": {
+                    "allowNull": false,
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "Topic": {
+                    "allowNull": true,
+                    "field": "Topic",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "Description": {
+                    "allowNull": true,
+                    "field": "Description",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "createdAt": {
+                    "allowNull": true,
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
                     "field": "createdAt",
                     "seqType": "Sequelize.DATE"
                 },
                 "updatedAt": {
+<<<<<<< HEAD
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+=======
+                    "allowNull": true,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "IdeasId": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER(11)"
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
                 }
             },
             "indexes": []
@@ -38,6 +70,7 @@
             "tableName": "users",
             "schema": {
                 "UserId": {
+<<<<<<< HEAD
                     "allowNull": false,
                     "autoIncrement": true,
                     "primaryKey": true,
@@ -55,20 +88,50 @@
                 "FullName": {
                     "field": "FullName",
                     "seqType": "Sequelize.STRING"
+=======
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "FirstName": {
+                    "field": "FirstName",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "LastName": {
+                    "field": "LastName",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "FullName": {
+                    "field": "FullName",
+                    "seqType": "Sequelize.STRING(255)"
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
                 },
                 "Email": {
                     "unique": true,
                     "field": "Email",
+<<<<<<< HEAD
                     "seqType": "Sequelize.STRING"
+=======
+                    "seqType": "Sequelize.STRING(255)"
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
                 },
                 "Username": {
                     "unique": true,
                     "field": "Username",
+<<<<<<< HEAD
                     "seqType": "Sequelize.STRING"
                 },
                 "Password": {
                     "field": "Password",
                     "seqType": "Sequelize.STRING"
+=======
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "Password": {
+                    "field": "Password",
+                    "seqType": "Sequelize.STRING(255)"
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -82,5 +145,9 @@
             "indexes": []
         }
     },
+<<<<<<< HEAD
     "revision": 3
+=======
+    "revision": 4
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
 }

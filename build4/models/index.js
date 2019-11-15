@@ -7,7 +7,11 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
+<<<<<<< HEAD
 // const associations = require('./rel/associations'); // <--- Add this constant
+=======
+const associations = require('./rel/associations'); // <--- Add this constant
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
 
 let sequelize;
 if (config.use_env_variable) {
@@ -32,7 +36,11 @@ Object.keys(db).forEach(modelName => {
     }
 });
 
+<<<<<<< HEAD
 // associations(db); // <--- Add this call to your associations function
+=======
+associations(db); // <--- Add this call to your associations function
+>>>>>>> 308756a52e64dad91cd52f6b2c3ba91c520f0699
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

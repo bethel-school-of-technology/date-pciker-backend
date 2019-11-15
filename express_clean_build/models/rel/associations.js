@@ -8,10 +8,10 @@
 module.exports = function(models) {
     models.ideas.belongsToMany(models.users, {
         through: models.ideas_users,
-        foreignKey: 'user_id'
+        foreignKey: 'UserId'
     });
     models.users.belongsToMany(models.ideas, {
         through: models.ideas_users,
-        foreignKey: 'user_id'
+        foreignKey: 'UserId'
     });
 }

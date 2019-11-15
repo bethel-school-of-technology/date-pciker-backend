@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+//              INVENTORY TRACKER OPTIONS           //
+
 // // Get all posts
 // Router.get('/get-posts', async (req, res) => {
 //     const allPosts = await Post.find();
@@ -66,6 +68,8 @@ var models = require('../models');
 //     });
 // });
 
+///////////////////////////////////////////
+
 router.get('/ideas', function(req, res, next) {
   models.ideas
     .findAll({include: [{ model: models.ideas }]})
@@ -74,6 +78,15 @@ router.get('/ideas', function(req, res, next) {
       res.send(JSON.stringify(ideasFound));
     });
 });
+
+//              FRONT END INTEGRATION OPTION            //
+
+// router.get('/staticPlanets', function (req, res, next) {
+
+//         res.send(JSON.stringify(
+//           staticModels.planet
+//         ));
+//       });
 
 router.post('/ideas', function(req, res, next) {
     models.ideas

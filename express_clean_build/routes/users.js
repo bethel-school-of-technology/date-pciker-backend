@@ -7,6 +7,15 @@ var models = require('../models');
   router.get('/signup', function(req, res, next) {
       res.render('signup')});
 
+// ROUTE GIVEN IN FRONT END INTEGRATION //
+
+      // router.get('/staticPlanets', function (req, res, next) {
+
+      //   res.send(JSON.stringify(
+      //     staticModels.planet
+      //   ));
+      // });
+
   router.post('/signup', function(req, res, next) {
     models.users
       .findOrCreate({
@@ -29,7 +38,7 @@ var models = require('../models');
       });
   });
    
-  
+  // POSSIBLE PROFILE ROUTE?? //
 
 //   router.get('/profile/:id', function (req, res, next) {
 //     models.users

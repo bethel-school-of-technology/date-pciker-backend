@@ -3,9 +3,12 @@ var router = express.Router();
 var models = require('../models');
 // var authService = require('../services/auth'); //<--- Add authentication service
 
-    
-  router.get('/signup', function(req, res, next) {
-      res.render('signup')});
+
+      router.get('/signup', function (req, res, next) {
+        res.send(JSON.stringify(
+          models.users
+        ));
+      });
 
 // ROUTE GIVEN IN FRONT END INTEGRATION //
 
@@ -58,7 +61,10 @@ var models = require('../models');
 //   });
 
 router.get('/login', function(req, res, next) {
-    res.render('login')});
+  res.send(JSON.stringify(
+    models.users
+  ));
+});
   
   router.post('/login', function(req, res, next) {
     models.users
@@ -77,13 +83,13 @@ router.get('/login', function(req, res, next) {
       });
   });
 
-  // router.get('/actors', function(req, res, next) {
-  //   models.actor.findAll({}).then(foundActors => {
-  //     const mappedActors = foundActors.map(actor => ({
-  //       ActorID: actor.actor_id,
-  //       Name: `${actor.first_name} ${actor.last_name}`
+  // router.get('/users', function(req, res, next) {
+  //   models.user.findAll({}).then(foundUsers => {
+  //     const mappedUsers = foundUsers.map(user => ({
+  //       UserrID: user.user_id,
+  //       Name: `${user.first_name} ${user.last_name}`
   //     }));
-  //     res.send(JSON.stringify(mappedActors));
+  //     res.send(JSON.stringify(mappedUsers));
   //   });
   // });
   
@@ -134,31 +140,8 @@ router.get('/login', function(req, res, next) {
 // });
 
 
-// router.get('/signup', function(req, res, next) {
-//   res.render('signup');
-// });
 
-// router.post('/signup', function(req, res, next) {
-//     models.users
-//       .findOrCreate({
-//         where: {
-//           Username: req.body.username
-//         },
-//         defaults: {
-//           FirstName: req.body.firstName,
-//           LastName: req.body.lastName,
-//           Email: req.body.email,
-//           Password: req.body.password
-//         }
-//       })
-//       .spread(function(result, created) {
-//         if (created) {
-//           res.redirect('login');  //<---Change this line to redirect to the login screen
-//         } else {
-//           res.send('This user already exists');
-//         }
-//       });
-//   });
+
 
 // router.get('/login', function(req, res, next) {
 //   res.render('login');

@@ -1,8 +1,8 @@
 {
     "development": {
         "username": "root",
-        "password": "Password1!",
-        "database": "familydate2",
+        "password": "1Joyann1",
+        "database": "HomeFamilyDN",
         "host": "127.0.0.1",
         "dialect": "mysql",
         "operatorsAliases": false,

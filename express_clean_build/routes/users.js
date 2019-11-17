@@ -5,9 +5,7 @@ var models = require('../models');
 
 
       router.get('/signup', function (req, res, next) {
-        res.send(JSON.stringify(
-          models.users
-        ));
+        res.send(JSON.stringify(models.users));
       });
 
 // ROUTE GIVEN IN FRONT END INTEGRATION //
@@ -17,6 +15,20 @@ var models = require('../models');
       //   res.send(JSON.stringify(
       //     staticModels.planet
       //   ));
+      // });
+
+//                    FROM RESTFUL 8                 //
+
+      // router.post('/signup', function (req, res, next) {
+      //   models.users.create(req.body)
+      //     .then(newUsers => {
+      //       res.setHeader('Content-Type', 'application/json');
+      //       res.send(JSON.stringify(newUsers));
+      //     })
+      //     .catch(err => {
+      //       res.status(400);
+      //       res.send(err.message);
+      //     });
       // });
 
   router.post('/signup', function(req, res, next) {
@@ -70,8 +82,8 @@ router.get('/login', function(req, res, next) {
     models.users
       .findOne({
         where: {
-          Username: req.body.username,
-          Password: req.body.password
+          Username: req.body.Username,
+          Password: req.body.Password
         }
       })
       .then(user => {

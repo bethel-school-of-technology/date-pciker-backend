@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
     var ideas_users = sequelize.define(
         'ideas_users', {
-            IdeaId: {
+            IdeasId: {
                 allowNull: false,
                 primaryKey: true,
                 type: DataTypes.INTEGER

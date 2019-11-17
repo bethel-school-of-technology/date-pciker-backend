@@ -7,6 +7,7 @@ var models = require('./models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var ideasRouter = require('./routes/ideas');
 
 // var ideasRouter = require('./routes/ideas');
 
@@ -31,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/ideas', ideasRouter);
+
 // app.use('/ideas', ideasRouter);
 
 // catch 404 and forward to error handler

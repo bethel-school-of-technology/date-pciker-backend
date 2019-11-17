@@ -107,13 +107,14 @@ router.get('/login', function(req, res, next) {
   
   router.get('/profile/:id', function(req, res, next) {
     models.users
-      .findByPk(parseInt(req.params.id), { 
-        include: [{ model: models.users }]
-      })
-      .then(usersFound => {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(usersFound));
-      })
+    .findByPk(parseInt(req.params.id))
+    .then(
+      user => {
+        if (user) {
+          res.send(JSON.stringify(user))
+        }
+      }
+    )
   });
 
   // router.get('/profile/:id', function (req, res, next) {

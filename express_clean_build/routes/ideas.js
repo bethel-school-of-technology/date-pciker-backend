@@ -88,16 +88,14 @@ router.get('/ideas', function(req, res, next) {
 //         ));
 //       });
 
-router.post('/ideas', function(req, res, next) {
+router.post('/', function(req, res, next) {
     models.ideas
         .findOrCreate({
-            // where: {
-            //     UserId: req.body.userId
-            // },
+            where: {
+                IdeasBody: req.body.IdeasBody
+            },
             defaults: {
-                Topic: req.body.topic,
-                Description: req.body.description,
-                IdeasId: req.body.ideasId,
+                IdeasTitle: req.body.IdeasTitle,
             }
         })
         .spread(function(result, created) {

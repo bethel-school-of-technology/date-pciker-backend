@@ -1,33 +1,23 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('ideas', {
-    UserId: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false
-    },
-    Topic: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    Description: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    IdeasId: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true
-    }
-  }, {
-    tableName: 'ideas'
-  });
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+    const ideas = sequelize.define('ideas', {
+        IdeasId: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        IdeasTitle: DataTypes.STRING,
+        IdeasBody: DataTypes.STRING
+    }, {});
+    // associations can be defined below
+    ideas.associate = function(models) {
+        ideas.belongsToMany(models.users, {
+            through: 'ideas_users',
+            as: 'users',
+            foreignKey: 'ideasId',
+            otherKey: 'usersId'
+        });
+    };
+    // end of associations code block
+    return ideas;
 };

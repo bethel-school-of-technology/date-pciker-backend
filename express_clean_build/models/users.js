@@ -1,43 +1,56 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
-    UserId: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true
-    },
-    FirstName: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    LastName: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    Email: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      unique: true
-    },
-    Username: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      unique: true
-    },
-    Password: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: true
-    }
-  }, {
-    tableName: 'users'
-  });
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+    var users = sequelize.define(
+        'users', {
+            UserId: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: DataTypes.INTEGER
+            },
+            FirstName: DataTypes.STRING,
+            LastName: DataTypes.STRING,
+            Email: {
+                type: DataTypes.STRING,
+                unique: true
+            },
+            Username: {
+                type: DataTypes.STRING,
+                unique: true
+            },
+            Password: DataTypes.STRING,
+            createdAt: DataTypes.DATE,
+            updatedAt: DataTypes.DATE
+        }, {}
+    );
+    // associations can be defined below
+    users.associate = function(models) {
+        users.belongsToMany(models.ideas, {
+            through: 'ideas_users',
+            as: 'ideas',
+            foreignKey: 'usersId',
+            otherKey: 'ideasId'
+        });
+    };
+    // end of associations code block
+    return users;
 };
+
+
+
+
+// 'use strict';
+// module.exports = (sequelize, DataTypes) => {
+//   const users = sequelize.define('users', {
+//     UserId: DataTypes.INTEGER,
+//     FirstName: DataTypes.STRING,
+//     LastName: DataTypes.STRING,
+//     Email: DataTypes.STRING,
+//     Username: DataTypes.STRING,
+//     Password: DataTypes.STRING
+//   }, {});
+//   users.associate = function(models) {
+//     // associations can be defined here
+//   };
+//   return users;
+// };

@@ -1,18 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var ideas_users = sequelize.define(
-        'ideas_users', {
-            IdeaId: {
-                allowNull: false,
-                primaryKey: true,
-                type: DataTypes.INTEGER
-            },
-            UserId: {
-                allowNull: false,
-                // foreignKey: true,
-                type: DataTypes.INTEGER
-            }
-        }, {}
-    );
-    return ideas_users;
+  const ideas_users = sequelize.define('ideas_users', {
+    UsersId: DataTypes.INTEGER,
+    IdeasId: DataTypes.INTEGER
+  }, {});
+  ideas_users.associate = function(models) {
+    // associations can be defined here
+  };
+  return ideas_users;
 };

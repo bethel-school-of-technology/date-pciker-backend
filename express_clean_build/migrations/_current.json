@@ -1,33 +1,117 @@
 {
     "tables": {
+        "comments": {
+            "tableName": "comments",
+            "schema": {
+                "CommentsId": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "CommentsId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "CommentsBody": {
+                    "field": "CommentsBody",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "comments_ideas": {
+            "tableName": "comments_ideas",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "CommentsId": {
+                    "field": "CommentsId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "IdeasId": {
+                    "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "ideas": {
             "tableName": "ideas",
             "schema": {
                 "IdeasId": {
-                    "allowNull": false,
                     "autoIncrement": true,
                     "primaryKey": true,
                     "field": "IdeasId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "UserId": {
-                    "allowNull": false,
-                    "field": "UserId",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "Topic": {
-                    "field": "Topic",
+                "IdeasTitle": {
+                    "field": "IdeasTitle",
                     "seqType": "Sequelize.STRING"
                 },
-                "Description": {
-                    "field": "Description",
+                "IdeasBody": {
+                    "field": "IdeasBody",
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
+                    "allowNull": false,
                     "field": "createdAt",
                     "seqType": "Sequelize.DATE"
                 },
                 "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "ideas_users": {
+            "tableName": "ideas_users",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "UsersId": {
+                    "field": "UsersId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "IdeasId": {
+                    "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 }
@@ -50,10 +134,6 @@
                 },
                 "LastName": {
                     "field": "LastName",
-                    "seqType": "Sequelize.STRING"
-                },
-                "FullName": {
-                    "field": "FullName",
                     "seqType": "Sequelize.STRING"
                 },
                 "Email": {
@@ -82,5 +162,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 1
 }

@@ -3,21 +3,45 @@ var router = express.Router();
 var models = require('../models');
 // var authService = require('../services/auth'); //<--- Add authentication service
 
-    
-  router.get('/signup', function(req, res, next) {
-      res.render('signup')});
+
+      router.get('/signup', function (req, res, next) {
+        res.send(JSON.stringify(models.users));
+      });
+
+// ROUTE GIVEN IN FRONT END INTEGRATION //
+
+      // router.get('/staticPlanets', function (req, res, next) {
+
+      //   res.send(JSON.stringify(
+      //     staticModels.planet
+      //   ));
+      // });
+
+//                    FROM RESTFUL 8                 //
+
+      // router.post('/signup', function (req, res, next) {
+      //   models.users.create(req.body)
+      //     .then(newUsers => {
+      //       res.setHeader('Content-Type', 'application/json');
+      //       res.send(JSON.stringify(newUsers));
+      //     })
+      //     .catch(err => {
+      //       res.status(400);
+      //       res.send(err.message);
+      //     });
+      // });
 
   router.post('/signup', function(req, res, next) {
     models.users
       .findOrCreate({
         where: {
-          Username: req.body.username
+          Username: req.body.Username
         },
         defaults: {
-          FirstName: req.body.firstName,
-          LastName: req.body.lastName,
-          Email: req.body.email,
-          Password: req.body.password
+          FirstName: req.body.FirstName,
+          LastName: req.body.LastName,
+          Email: req.body.Email,
+          Password: req.body.Password
         }
       })
       .spread(function(result, created) {
@@ -29,7 +53,7 @@ var models = require('../models');
       });
   });
    
-  
+  // POSSIBLE PROFILE ROUTE?? //
 
 //   router.get('/profile/:id', function (req, res, next) {
 //     models.users
@@ -49,14 +73,17 @@ var models = require('../models');
 //   });
 
 router.get('/login', function(req, res, next) {
-    res.render('login')});
+  res.send(JSON.stringify(
+    models.users
+  ));
+});
   
   router.post('/login', function(req, res, next) {
     models.users
       .findOne({
         where: {
-          Username: req.body.username,
-          Password: req.body.password
+          Username: req.body.Username,
+          Password: req.body.Password
         }
       })
       .then(user => {
@@ -67,16 +94,27 @@ router.get('/login', function(req, res, next) {
         }
       });
   });
+
+  // router.get('/users', function(req, res, next) {
+  //   models.user.findAll({}).then(foundUsers => {
+  //     const mappedUsers = foundUsers.map(user => ({
+  //       UserrID: user.user_id,
+  //       Name: `${user.first_name} ${user.last_name}`
+  //     }));
+  //     res.send(JSON.stringify(mappedUsers));
+  //   });
+  // });
   
-  router.get('/users/:id', function(req, res, next) {
+  router.get('/profile/:id', function(req, res, next) {
     models.users
-      .findByPk(parseInt(req.params.id), { 
-        include: [{ model: models.users }]
-      })
-      .then(usersFound => {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(usersFound));
-      })
+    .findByPk(parseInt(req.params.id))
+    .then(
+      user => {
+        if (user) {
+          res.send(JSON.stringify(user))
+        }
+      }
+    )
   });
 
   // router.get('/profile/:id', function (req, res, next) {
@@ -115,31 +153,8 @@ router.get('/login', function(req, res, next) {
 // });
 
 
-// router.get('/signup', function(req, res, next) {
-//   res.render('signup');
-// });
 
-// router.post('/signup', function(req, res, next) {
-//     models.users
-//       .findOrCreate({
-//         where: {
-//           Username: req.body.username
-//         },
-//         defaults: {
-//           FirstName: req.body.firstName,
-//           LastName: req.body.lastName,
-//           Email: req.body.email,
-//           Password: req.body.password
-//         }
-//       })
-//       .spread(function(result, created) {
-//         if (created) {
-//           res.redirect('login');  //<---Change this line to redirect to the login screen
-//         } else {
-//           res.send('This user already exists');
-//         }
-//       });
-//   });
+
 
 // router.get('/login', function(req, res, next) {
 //   res.render('login');

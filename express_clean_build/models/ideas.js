@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      model: 'users',
+      foreignKey: 'UserId'
     }, 
     IdeasTitle: DataTypes.STRING,
     IdeasBody: DataTypes.STRING

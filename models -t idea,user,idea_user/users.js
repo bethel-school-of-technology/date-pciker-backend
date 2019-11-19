@@ -1,16 +1,31 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('ideas', {
+  return sequelize.define('users', {
     UserId: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
-    Topic: {
+    FirstName: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    Description: {
+    LastName: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    Email: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      unique: true
+    },
+    Username: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      unique: true
+    },
+    Password: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
@@ -21,13 +36,8 @@ module.exports = function(sequelize, DataTypes) {
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: true
-    },
-    IdeasId: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true
     }
   }, {
-    tableName: 'ideas'
+    tableName: 'users'
   });
 };

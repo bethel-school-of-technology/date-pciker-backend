@@ -66,12 +66,6 @@
                     "field": "IdeasId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "UserId": {
-                    "model": "users",
-                    "foreignKey": "UserId",
-                    "field": "UserId",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "IdeasTitle": {
                     "field": "IdeasTitle",
                     "seqType": "Sequelize.STRING"
@@ -168,5 +162,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }

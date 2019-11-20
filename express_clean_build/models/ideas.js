@@ -14,8 +14,15 @@ module.exports = (sequelize, DataTypes) => {
         IdeasTitle: DataTypes.STRING,
         IdeasBody: DataTypes.STRING
     }, {});
-    ideas.associate = function(models) {
         // associations can be defined here
+    ideas.associate = function(models) {
+      ideas.belongsToMany(models.users, {
+          through: 'ideas_users',
+          as: 'users',
+          foreignKey: 'IdeasId',
+          otherKey: 'UserId'
+      });
+  };
+  // end of associations code block
     };
     return ideas;
-};

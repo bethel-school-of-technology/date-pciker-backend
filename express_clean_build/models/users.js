@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
         users.belongsToMany(models.ideas, {
             through: 'ideas_users',
             as: 'ideas',
-            foreignKey: 'usersId',
-            otherKey: 'ideasId'
+            foreignKey: 'UserId',
+            otherKey: 'IdeasId'
         });
     };
     // end of associations code block

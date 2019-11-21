@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const ideas_users = sequelize.define('ideas_users', {
-    UsersId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
     IdeasId: DataTypes.INTEGER
   }, {});
   ideas_users.associate = function(models) {

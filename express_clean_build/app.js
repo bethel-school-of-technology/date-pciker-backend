@@ -10,7 +10,6 @@ var usersRouter = require('./routes/users');
 var ideasRouter = require('./routes/ideas');
 // var commentsRouter = require('./routes/comments');
 
-// var ideasRouter = require('./routes/ideas');
 
 var app = express();
 

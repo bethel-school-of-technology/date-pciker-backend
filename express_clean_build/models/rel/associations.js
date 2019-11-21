@@ -4,7 +4,7 @@ module.exports = function(models) {
             through: models.ideas_users,
             foreignKey: 'UserId'
         });
-    models.ideas.belongsToMany(models.users,
+    models.ideas.belongsTo(models.users,
         {
             through: models.ideas_users,
             foreignKey: 'IdeasId'

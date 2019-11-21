@@ -1,21 +1,37 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-// var authService = require('../services/auth'); //<--- Add authentication service
+var authService = require('../services/auth'); //<--- Add authentication service
 
 
       router.get('/signup', function (req, res, next) {
         res.send(JSON.stringify(models.users));
       });
 
-// ROUTE GIVEN IN FRONT END INTEGRATION //
+// ROUTE GIVEN IN ADVANCED AUTH 5 //
 
-      // router.get('/staticPlanets', function (req, res, next) {
-
-      //   res.send(JSON.stringify(
-      //     staticModels.planet
-      //   ));
-      // });
+// Create new user if one doesn't exist
+router.post('/signup', function(req, res, next) {
+  models.users
+    .findOrCreate({
+      where: {
+        Username: req.body.username
+      },
+      defaults: {
+        FirstName: req.body.firstName,
+        LastName: req.body.lastName,
+        Email: req.body.email,
+        Password: req.body.password
+      }
+    })
+    .spread(function(result, created) {
+      if (created) {
+        res.send('User successfully created');
+      } else {
+        res.send('This user already exists');
+      }
+    });
+});
 
 //                    FROM RESTFUL 8                 //
 
@@ -31,27 +47,29 @@ var models = require('../models');
       //     });
       // });
 
-  router.post('/signup', function(req, res, next) {
-    models.users
-      .findOrCreate({
-        where: {
-          Username: req.body.Username
-        },
-        defaults: {
-          FirstName: req.body.FirstName,
-          LastName: req.body.LastName,
-          Email: req.body.Email,
-          Password: req.body.Password
-        }
-      })
-      .spread(function(result, created) {
-        if (created) {
-          res.redirect('login');  //<---Change this line to redirect to the login screen
-        } else {
-          res.send('This user already exists');
-        }
-      });
-  });
+// route used until Nov 21//
+
+  // router.post('/signup', function(req, res, next) {
+  //   models.users
+  //     .findOrCreate({
+  //       where: {
+  //         Username: req.body.Username
+  //       },
+  //       defaults: {
+  //         FirstName: req.body.FirstName,
+  //         LastName: req.body.LastName,
+  //         Email: req.body.Email,
+  //         Password: req.body.Password
+  //       }
+  //     })
+  //     .spread(function(result, created) {
+  //       if (created) {
+  //         res.redirect('login');  //<---Change this line to redirect to the login screen
+  //       } else {
+  //         res.send('This user already exists');
+  //       }
+  //     });
+  // });
    
   // POSSIBLE PROFILE ROUTE?? //
 
@@ -77,23 +95,51 @@ router.get('/login', function(req, res, next) {
     models.users
   ));
 });
-  
-  router.post('/login', function(req, res, next) {
-    models.users
-      .findOne({
-        where: {
-          Username: req.body.Username,
-          Password: req.body.Password
-        }
-      })
-      .then(user => {
-        if (user) {
-          res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
-        } else {
-          res.send('Invalid login!');
-        }
+
+// Login user and return JWT as cookie
+router.post('/login', function (req, res, next) {
+  models.users.findOne({
+    where: {
+      Username: req.body.username,
+      Password: req.body.password
+    }
+  }).then(user => {
+    if (!user) {
+      console.log('User not found')
+      return res.status(401).json({
+        message: "Login Failed"
       });
+    }
+    if (user) {
+      let token = authService.signUser(user); // <--- Uses the authService to create jwt token
+      res.cookie('jwt', token); // <--- Adds token to response as a cookie
+      res.send('Login successful');
+    } else {
+      console.log('Wrong password');
+      res.redirect('login')
+    }
   });
+});
+
+
+// route until Nov 21   //
+  
+  // router.post('/login', function(req, res, next) {
+  //   models.users
+  //     .findOne({
+  //       where: {
+  //         Username: req.body.Username,
+  //         Password: req.body.Password
+  //       }
+  //     })
+  //     .then(user => {
+  //       if (user) {
+  //         res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
+  //       } else {
+  //         res.send('Invalid login!');
+  //       }
+  //     });
+  // });
 
   // router.get('/users', function(req, res, next) {
   //   models.user.findAll({}).then(foundUsers => {
@@ -104,18 +150,38 @@ router.get('/login', function(req, res, next) {
   //     res.send(JSON.stringify(mappedUsers));
   //   });
   // });
-  
-  router.get('/profile/:id', function(req, res, next) {
-    models.users
-    .findByPk(parseInt(req.params.id))
-    .then(
-      user => {
-        if (user) {
-          res.send(JSON.stringify(user))
-        }
-      }
-    )
+
+  router.get('/profile', function (req, res, next) {
+    let token = req.cookies.jwt;
+    if (token) {
+      authService.verifyUser(token)
+        .then(user => {
+          if (user) {
+            res.send(JSON.stringify(user));
+          } else {
+            res.status(401);
+            res.send('Invalid authentication token');
+          }
+        });
+    } else {
+      res.status(401);
+      res.send('Must be logged in');
+    }
   });
+
+  // route until Nov 21   //
+  
+  // router.get('/profile/:id', function(req, res, next) {
+  //   models.users
+  //   .findByPk(parseInt(req.params.id))
+  //   .then(
+  //     user => {
+  //       if (user) {
+  //         res.send(JSON.stringify(user))
+  //       }
+  //     }
+  //   )
+  // });
 
   // router.get('/profile/:id', function (req, res, next) {
   //   models.users
@@ -133,6 +199,11 @@ router.get('/login', function(req, res, next) {
   //       }
   //     });
   //   });
+
+  router.get('/logout', function (req, res, next) {
+    res.cookie('jwt', "", { expires: new Date(0) });
+    res.send('Logged out');
+    });
 
   module.exports = router;
 
@@ -155,28 +226,6 @@ router.get('/login', function(req, res, next) {
 
 
 
-
-// router.get('/login', function(req, res, next) {
-//   res.render('login');
-// });
-
-// router.post('/login', function(req, res, next) {
-//     models.users
-//       .findOne({
-//         where: {
-//           Username: req.body.username,
-//           Password: req.body.password
-//         }
-//       })
-//       .then(user => {
-//         if (user) {
-//           res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
-//         } else {
-//           res.send('Invalid login!');
-//         }
-//       });
-//   });
-  
 
 
 

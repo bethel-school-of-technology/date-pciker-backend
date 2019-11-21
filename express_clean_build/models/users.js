@@ -23,15 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             updatedAt: DataTypes.DATE
         }, {}
     );
-    // associations can be defined below
-    users.associate = function(models) {
-        users.belongsToMany(models.ideas, {
-            through: 'ideas_users',
-            as: 'ideas',
-            foreignKey: 'UserId',
-            otherKey: 'IdeasId'
-        });
-    };
+  
     // end of associations code block
     return users;
 };

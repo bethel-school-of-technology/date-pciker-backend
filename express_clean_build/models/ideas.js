@@ -6,16 +6,18 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        UserId: {
-            type: DataTypes.INTEGER,
-            model: 'users',
-            foreignKey: 'UserId'
-        },
         IdeasTitle: DataTypes.STRING,
         IdeasBody: DataTypes.STRING
     }, {});
+    // associations can be defined below
     ideas.associate = function(models) {
-        // associations can be defined here
+        ideas.belongsToMany(models.users, {
+            through: 'ideas_users',
+            as: 'users',
+            foreignKey: 'ideasId'
+                // otherKey: 'usersId'
+        });
     };
+    // end of associations code block
     return ideas;
 };

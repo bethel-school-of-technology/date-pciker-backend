@@ -1,14 +1,11 @@
 {
-<<<<<<< HEAD
-
     "development": {
         "username": "root",
         "password": "Ticket1984!",
-        "database": "familydate2",
+        "database": "familydate",
         "host": "127.0.0.1",
         "dialect": "mysql",
-        "operatorsAliases": false,
-        "define": { "timestamps": false }
+        "operatorsAliases": false
     },
     "test": {
         "username": "root",
@@ -27,30 +24,3 @@
         "operatorsAliases": false
     }
 }
-=======
-  "development": {
-    "username": "root",
-    "password": "Password1!",
-    "database": "familydate",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  }
-}
->>>>>>> d472be48521e6a9381721530ebff86d6a6e1a104

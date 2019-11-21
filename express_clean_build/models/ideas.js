@@ -9,15 +9,16 @@ module.exports = (sequelize, DataTypes) => {
         IdeasTitle: DataTypes.STRING,
         IdeasBody: DataTypes.STRING
     }, {});
-    // associations can be defined below
+    // associations can be defined here
     ideas.associate = function(models) {
         ideas.belongsToMany(models.users, {
             through: 'ideas_users',
             as: 'users',
-            foreignKey: 'ideasId'
-                // otherKey: 'usersId'
+            foreignKey: 'IdeasId',
+            otherKey: 'UserId'
         });
     };
     // end of associations code block
-    return ideas;
 };
+// end of associations code block
+return ideas;

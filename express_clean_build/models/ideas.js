@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
     // end of associations code block
+
+    // end of associations code block
+    return ideas;
+
 };
-// end of associations code block
-return ideas;

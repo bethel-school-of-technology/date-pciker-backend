@@ -70,7 +70,7 @@ var models = require('../models');
 
 ///////////////////////////////////////////
 
-router.get('/ideas', function(req, res, next) {
+router.get('/', function(req, res, next) {
   models.ideas
     .findAll({include: [{ model: models.ideas }]})
     .then(ideasFound => {

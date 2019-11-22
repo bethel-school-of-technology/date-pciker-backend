@@ -6,16 +6,11 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        UserId: {
-            type: DataTypes.INTEGER,
-            model: 'users',
-            foreignKey: 'UserId'
-        },
         IdeasTitle: DataTypes.STRING,
         IdeasBody: DataTypes.STRING
     }, {});
+    // associations can be defined here
     return ideas;
+};
+// end of associations code block
 
-  };
-  // end of associations code block
-  

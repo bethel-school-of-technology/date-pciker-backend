@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
         },
         IdeasTitle: DataTypes.STRING,
-        IdeasBody: DataTypes.STRING
     }, {});
     // associations can be defined here
     return ideas;

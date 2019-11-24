@@ -70,10 +70,6 @@
                     "field": "IdeasTitle",
                     "seqType": "Sequelize.STRING"
                 },
-                "IdeasBody": {
-                    "field": "IdeasBody",
-                    "seqType": "Sequelize.STRING"
-                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -90,26 +86,19 @@
         "ideas_users": {
             "tableName": "ideas_users",
             "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "UserId": {
                     "field": "UserId",
-                    "primaryKey": true,
-                    "references": {
-                        "model": "users",
-                        "key": "UserId"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "IdeasId": {
                     "field": "IdeasId",
-                    "primaryKey": true,
-                    "references": {
-                        "model": "ideas",
-                        "key": "IdeasId"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "createdAt": {
@@ -169,5 +158,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 4
 }

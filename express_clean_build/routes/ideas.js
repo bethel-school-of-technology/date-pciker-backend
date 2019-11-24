@@ -71,11 +71,11 @@ var models = require('../models');
 ///////////////////////////////////////////
 
 router.get('/', function(req, res, next) {
-  models.ideas
-    .findAll({include: [{ model: models.ideas }]})
-    .then(ideasFound => {
+  models.Ideas
+    .findAll({include: [{ model: models.Ideas }]})
+    .then(IdeasFound => {
       res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(ideasFound));
+      res.send(JSON.stringify(IdeasFound));
     });
 });
 
@@ -129,9 +129,9 @@ router.post('/comments', function(req, res, next) {
             //     UserId: req.body.userId
             // },
             defaults: {
-                Topic: req.body.topic,
-                Description: req.body.description,
-                IdeasId: req.body.ideasId,
+                Topic: req.body.Topic,
+                Description: req.body.Description,
+                IdeasId: req.body.IdeasId,
             }
         })
         .spread(function(result, created) {

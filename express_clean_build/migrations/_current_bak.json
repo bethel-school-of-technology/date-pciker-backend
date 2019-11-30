@@ -26,37 +26,6 @@
             },
             "indexes": []
         },
-        "comments_ideas": {
-            "tableName": "comments_ideas",
-            "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "CommentsId": {
-                    "field": "CommentsId",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "IdeasId": {
-                    "field": "IdeasId",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                }
-            },
-            "indexes": []
-        },
         "ideas": {
             "tableName": "ideas",
             "schema": {
@@ -69,48 +38,6 @@
                 "IdeasTitle": {
                     "field": "IdeasTitle",
                     "seqType": "Sequelize.STRING"
-                },
-                "IdeasBody": {
-                    "field": "IdeasBody",
-                    "seqType": "Sequelize.STRING"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                }
-            },
-            "indexes": []
-        },
-        "ideas_users": {
-            "tableName": "ideas_users",
-            "schema": {
-                "UserId": {
-                    "field": "UserId",
-                    "primaryKey": true,
-                    "references": {
-                        "model": "users",
-                        "key": "UserId"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "IdeasId": {
-                    "field": "IdeasId",
-                    "primaryKey": true,
-                    "references": {
-                        "model": "ideas",
-                        "key": "IdeasId"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -167,7 +94,69 @@
                 }
             },
             "indexes": []
+        },
+        "users_comments": {
+            "tableName": "users_comments",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "UserId": {
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "CommentsId": {
+                    "field": "CommentsId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "users_ideas": {
+            "tableName": "users_ideas",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "UserId": {
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "IdeasId": {
+                    "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
         }
     },
-    "revision": 3
+    "revision": 1
 }

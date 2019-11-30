@@ -83,37 +83,6 @@
             },
             "indexes": []
         },
-        "ideas_users": {
-            "tableName": "ideas_users",
-            "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "UserId": {
-                    "field": "UserId",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "IdeasId": {
-                    "field": "IdeasId",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                }
-            },
-            "indexes": []
-        },
         "users": {
             "tableName": "users",
             "schema": {
@@ -156,7 +125,38 @@
                 }
             },
             "indexes": []
+        },
+        "users_ideas": {
+            "tableName": "users_ideas",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "UserId": {
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "IdeasId": {
+                    "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
         }
     },
-    "revision": 4
+    "revision": 2
 }

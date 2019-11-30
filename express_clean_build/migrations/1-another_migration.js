@@ -6,17 +6,17 @@ var Sequelize = require('sequelize');
  * Actions summary:
  *
  * createTable "comments", deps: []
- * createTable "comments_ideas", deps: []
  * createTable "ideas", deps: []
- * createTable "ideas_users", deps: []
  * createTable "users", deps: []
+ * createTable "users_comments", deps: []
+ * createTable "users_ideas", deps: []
  *
  **/
 
 var info = {
     "revision": 1,
-    "name": "myfirstmigration",
-    "created": "2019-11-17T02:59:43.732Z",
+    "name": "another_migration",
+    "created": "2019-11-29T21:34:04.985Z",
     "comment": ""
 };
 
@@ -52,40 +52,6 @@ var migrationCommands = [{
     {
         fn: "createTable",
         params: [
-            "comments_ideas",
-            {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "field": "id",
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
-                },
-                "CommentsId": {
-                    "type": Sequelize.INTEGER,
-                    "field": "CommentsId"
-                },
-                "IdeasId": {
-                    "type": Sequelize.INTEGER,
-                    "field": "IdeasId"
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "field": "createdAt",
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "field": "updatedAt",
-                    "allowNull": false
-                }
-            },
-            {}
-        ]
-    },
-    {
-        fn: "createTable",
-        params: [
             "ideas",
             {
                 "IdeasId": {
@@ -97,44 +63,6 @@ var migrationCommands = [{
                 "IdeasTitle": {
                     "type": Sequelize.STRING,
                     "field": "IdeasTitle"
-                },
-                "IdeasBody": {
-                    "type": Sequelize.STRING,
-                    "field": "IdeasBody"
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "field": "createdAt",
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "field": "updatedAt",
-                    "allowNull": false
-                }
-            },
-            {}
-        ]
-    },
-    {
-        fn: "createTable",
-        params: [
-            "ideas_users",
-            {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "field": "id",
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
-                },
-                "UsersId": {
-                    "type": Sequelize.INTEGER,
-                    "field": "UsersId"
-                },
-                "IdeasId": {
-                    "type": Sequelize.INTEGER,
-                    "field": "IdeasId"
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
@@ -191,6 +119,74 @@ var migrationCommands = [{
                 "updatedAt": {
                     "type": Sequelize.DATE,
                     "field": "updatedAt"
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "users_comments",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "UserId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "UserId"
+                },
+                "CommentsId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "CommentsId"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "users_ideas",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "UserId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "UserId"
+                },
+                "IdeasId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "IdeasId"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
                 }
             },
             {}

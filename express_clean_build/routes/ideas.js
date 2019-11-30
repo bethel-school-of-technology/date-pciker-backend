@@ -107,40 +107,4 @@ router.post('/', function(req, res, next) {
         });
   });
 
-//============//Comments routes//============//
-
-  //==possibly use findByPk??==//
-
-router.get('/comments', function(req, res, next) {
-    models.comments
-      .findAll({include: [{ model: models.comments }]})
-      .then(commentsFound => {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(commentsFound));
-      });
-  });
-
-
-
-router.post('/comments', function(req, res, next) {
-    models.comments
-        .findOrCreate({
-            // where: {
-            //     UserId: req.body.userId
-            // },
-            defaults: {
-                Topic: req.body.Topic,
-                Description: req.body.Description,
-                IdeasId: req.body.IdeasId,
-            }
-        })
-        .spread(function(result, created) {
-            if (created) {
-                res.send('Comment posted successfully');
-            } else {
-                res.send('This comment already exists');
-            }
-        });
-  });
-
 module.exports = router;

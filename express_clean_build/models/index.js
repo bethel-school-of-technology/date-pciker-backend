@@ -7,6 +7,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
+const associations = require('./rel/associations');
 
 let sequelize;
 if (config.use_env_variable) {
@@ -25,13 +26,13 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {  //???
+Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
-//associations(db);
+associations(db);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

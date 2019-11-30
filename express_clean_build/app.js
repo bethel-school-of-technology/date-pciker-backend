@@ -8,7 +8,9 @@ var models = require('./models');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ideasRouter = require('./routes/ideas');
-// var commentsRouter = require('./routes/comments');
+var commentsRouter = require('./routes/comments');
+const fileUpload = require('express-fileupload'); 
+
 
 
 var app = express();
@@ -23,7 +25,7 @@ app.use(function(req, res, next) {
     next()
 });
 
-
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/ideas', ideasRouter);
-// app.use('/comments', commentsRouter);
+app.use('/comments', commentsRouter);
 
 // app.use('/ideas', ideasRouter);
 

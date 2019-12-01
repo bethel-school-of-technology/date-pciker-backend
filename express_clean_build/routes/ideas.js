@@ -71,13 +71,25 @@ var models = require('../models');
 ///////////////////////////////////////////
 
 router.get('/', function(req, res, next) {
-  models.Ideas
-    .findAll({include: [{ model: models.Ideas }]})
-    .then(IdeasFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(IdeasFound));
-    });
-});
+    models.ideas
+    .findByPk(parseInt(req.params.id))
+    .then(
+      idea => {
+        if (idea) {
+          res.send(JSON.stringify(idea))
+        }
+      }
+    )
+  });
+
+// router.get('/:id', function(req, res, next) {
+//   models.Ideas
+//     .findAll({include: [{ model: models.Ideas }]})
+//     .then(IdeasFound => {
+//       res.setHeader('Content-Type', 'application/json');
+//       res.send(JSON.stringify(IdeasFound));
+//     });
+// });
 
 //              FRONT END INTEGRATION OPTION            //
 
@@ -92,7 +104,7 @@ router.post('/', function(req, res, next) {
     models.ideas
         .findOrCreate({
             where: {
-                IdeasBody: req.body.IdeasBody
+                IdeasId: req.body.IdeasId
             },
             defaults: {
                 IdeasTitle: req.body.IdeasTitle,

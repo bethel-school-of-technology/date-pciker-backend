@@ -97,50 +97,51 @@ router.get('/login', function(req, res, next) {
 });
 
 // Login user and return JWT as cookie
-router.post('/login', function (req, res, next) {
-  models.users.findOne({
-    where: {
-      Username: req.body.Username
-    }
-  }).then(user => {
-    if (!user) {
-      console.log('User not found')
-      return res.status(401).json({
-        message: "Login Failed"
-      });
-    } else {
-      let passwordMatch = authService.comparePasswords(req.body.Password, user.Password);
-      if (passwordMatch) {
-        let token = authService.signUser(user);
-        res.cookie('jwt', token);
-        res.send('Login successful');
-      } else {
-        console.log('Wrong password');
-        res.send('Wrong password');
-      }
-    }
-  });
-});
+// router.post('/login', function (req, res, next) {
+//   models.users.findOne({
+//     where: {
+//       Username: req.body.Username
+//     }
+//   }).then(user => {
+//     if (!user) {
+//       console.log('User not found')
+//       return res.status(401).json({
+//         message: "Login Failed"
+//       });
+//     } else {
+//       let passwordMatch = authService.comparePasswords(req.body.Password, user.Password);
+//       if (passwordMatch) {
+//         let token = authService.signUser(user);
+//         res.cookie('jwt', token);
+//         res.send('Login successful');
+//       } else {
+//         res.status(400);
+//         console.log('Wrong password');
+//         res.send('Wrong password');
+//       }
+//     }
+//   });
+// });
 
 
 // route until Nov 21   //
   
-  // router.post('/login', function(req, res, next) {
-  //   models.users
-  //     .findOne({
-  //       where: {
-  //         Username: req.body.Username,
-  //         Password: req.body.Password
-  //       }
-  //     })
-  //     .then(user => {
-  //       if (user) {
-  //         res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
-  //       } else {
-  //         res.send('Invalid login!');
-  //       }
-  //     });
-  // });
+  router.post('/login', function(req, res, next) {
+    models.users
+      .findOne({
+        where: {
+          Username: req.body.Username,
+          Password: req.body.Password
+        }
+      })
+      .then(user => {
+        if (user) {
+          res.redirect('profile/' + user.UserId); //<---Change this line to redirect to the profile
+        } else {
+          res.send('Invalid login!');
+        }
+      });
+  });
 
   // router.get('/users', function(req, res, next) {
   //   models.user.findAll({}).then(foundUsers => {
@@ -152,37 +153,37 @@ router.post('/login', function (req, res, next) {
   //   });
   // });
 
-  router.get('/profile/:id', function (req, res, next) {
-    let token = req.cookies.jwt;
-    if (token) {
-      authService.verifyUser(token)
-        .then(user => {
-          if (user) {
-            res.send(JSON.stringify(user));
-          } else {
-            res.status(401);
-            res.send('Invalid authentication token');
-          }
-        });
-    } else {
-      res.status(401);
-      res.send('Must be logged in');
-    }
-  });
+  // router.get('/profile/:id', function (req, res, next) {
+  //   let token = req.cookies.jwt;
+  //   if (token) {
+  //     authService.verifyUser(token)
+  //       .then(user => {
+  //         if (user) {
+  //           res.send(JSON.stringify(user));
+  //         } else {
+  //           res.status(401);
+  //           res.send('Invalid authentication token');
+  //         }
+  //       });
+  //   } else {
+  //     res.status(401);
+  //     res.send('Must be logged in');
+  //   }
+  // });
 
   // route until Nov 21   //
   
-  // router.get('/profile/:id', function(req, res, next) {
-  //   models.users
-  //   .findByPk(parseInt(req.params.id))
-  //   .then(
-  //     user => {
-  //       if (user) {
-  //         res.send(JSON.stringify(user))
-  //       }
-  //     }
-  //   )
-  // });
+  router.get('/profile/:id', function(req, res, next) {
+    models.users
+    .findByPk(parseInt(req.params.id))
+    .then(
+      user => {
+        if (user) {
+          res.send(JSON.stringify(user))
+        }
+      }
+    )
+  });
 
   // router.get('/profile/:id', function (req, res, next) {
   //   models.users

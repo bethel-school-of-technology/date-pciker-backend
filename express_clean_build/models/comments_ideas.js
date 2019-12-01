@@ -1,11 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const comments_ideas = sequelize.define('comments_ideas', {
-    CommentsId: DataTypes.INTEGER,
-    IdeasId: DataTypes.INTEGER
-  }, {});
-  comments_ideas.associate = function(models) {
-    // associations can be defined here
-  };
+      CommentsId: {
+          type:DataTypes.INTEGER,
+          primaryKey: true},
+      IdeasId: {
+          type: DataTypes.INTEGER,
+      },
+    }, {});
   return comments_ideas;
 };

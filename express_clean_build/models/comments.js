@@ -7,8 +7,5 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true},
     CommentsBody: DataTypes.STRING
   }, {});
-  comments.associate = function(models) {
-    // associations can be defined here
-  };
   return comments;
 };

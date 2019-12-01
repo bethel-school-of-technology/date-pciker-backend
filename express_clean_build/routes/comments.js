@@ -16,13 +16,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     models.comments
         .findOrCreate({
-            // where: {
-            //     UserId: req.body.userId
-            // },
+            where: {
+                CommentsId: req.body.CommentsId
+            },
             defaults: {
-                Topic: req.body.Topic,
-                Description: req.body.Description,
-                IdeasId: req.body.IdeasId,
+                CommentsBody: req.body.CommentsBody,
             }
         })
         .spread(function(result, created) {

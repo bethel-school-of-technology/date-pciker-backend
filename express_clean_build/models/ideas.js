@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        IdeasTitle: DataTypes.STRING,
+        IdeasTitle: DataTypes.STRING, 
     }, {});
     // associations can be defined here
     return ideas;

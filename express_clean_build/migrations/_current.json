@@ -22,6 +22,17 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "IdeasId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "ideas",
+                        "key": "IdeasId"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "IdeasId",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -29,15 +40,16 @@
         "comments_ideas": {
             "tableName": "comments_ideas",
             "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "CommentsId": {
+                    "primaryKey": true,
                     "field": "CommentsId",
+                    "unique": "comments_ideas_CommentsId_commentCommentsId_unique",
+                    "references": {
+                        "model": "ideas",
+                        "key": "IdeasId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "IdeasId": {
@@ -53,6 +65,17 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "commentCommentsId": {
+                    "unique": "comments_ideas_CommentsId_commentCommentsId_unique",
+                    "references": {
+                        "model": "comments",
+                        "key": "CommentsId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "commentCommentsId",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -64,6 +87,13 @@
                     "autoIncrement": true,
                     "primaryKey": true,
                     "field": "IdeasId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "users",
+                        "key": "UserId"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "IdeasTitle": {
@@ -129,15 +159,17 @@
         "users_ideas": {
             "tableName": "users_ideas",
             "schema": {
-                "id": {
+                "UserId": {
                     "allowNull": false,
                     "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "UserId": {
                     "field": "UserId",
+                    "unique": "users_ideas_UserId_ideaIdeasId_unique",
+                    "references": {
+                        "model": "users",
+                        "key": "UserId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "IdeasId": {
@@ -153,10 +185,21 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "ideaIdeasId": {
+                    "unique": "users_ideas_UserId_ideaIdeasId_unique",
+                    "references": {
+                        "model": "ideas",
+                        "key": "IdeasId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "ideaIdeasId",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 4
 }

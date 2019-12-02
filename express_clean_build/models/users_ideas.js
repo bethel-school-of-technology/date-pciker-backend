@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         },    
         IdeasId: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
     },
   }, {});
+  users_ideas.associate = function(models) {
+    // associations can be defined here
+  };
   return users_ideas;
 };

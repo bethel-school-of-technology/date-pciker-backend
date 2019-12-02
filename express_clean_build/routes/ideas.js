@@ -70,7 +70,7 @@ var models = require('../models');
 
 ///////////////////////////////////////////
 
-router.get('/', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
     models.ideas
     .findByPk(parseInt(req.params.id))
     .then(
